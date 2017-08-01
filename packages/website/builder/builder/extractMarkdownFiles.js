@@ -1,58 +1,7 @@
-const React = require('react')
-const Prism = require('prismjs')
 const path = require('path')
-const marksy = require('marksy/components').default
 const { readFile, fileExistsSync } = require('./utils')
 const config = require('../config.json')
-
-const compile = marksy({
-  createElement: React.createElement,
-  highlight(language, code) {
-    return Prism.highlight(code, Prism.languages[language])
-  },
-  elements: {
-    a(props) {
-      return (
-        <a
-          href={props.href}
-          target={props.href.substr(0, 4) === 'http' ? 'new' : null}
-        >
-          {props.children}
-        </a>
-      )
-    },
-  },
-  components: {
-    Youtube(props) {
-      return (
-        <div style={{ textAlign: 'center' }}>
-          <iframe
-            style={{ border: '1px solid #333' }}
-            width="560"
-            height="315"
-            src={props.url}
-            frameborder="0"
-            allowfullscreen
-          />
-        </div>
-      )
-    },
-    Logo() {
-      return (
-        <div
-          style={{
-            background: 'url(/images/cerebral.png)',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'contain',
-            backgroundPosition: 'center',
-            width: '100%',
-            height: '50vh',
-          }}
-        />
-      )
-    },
-  },
-})
+const compile = require('./compile')
 
 module.exports = function() {
   const sections = Object.keys(config.docs)

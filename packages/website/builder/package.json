@@ -20,6 +20,7 @@
     "yargs": "^6.6.0"
   },
   "dependencies": {
-    "chokidar": "^1.6.1"
+    "chokidar": "^1.6.1",
+    "prism": "^4.1.2"
   }
 }
